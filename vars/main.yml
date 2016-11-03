@@ -1,0 +1,5 @@
+# Variables that shall not be overridden.
+---
+
+# Protect the folder containing the SSL certs accordingly
+apache_path_ssl_mode: "0600"

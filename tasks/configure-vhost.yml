@@ -1,0 +1,18 @@
+# Configures the Apache vhosts
+---
+
+- name: Ensure the target config dir for vhosts is present
+  file:
+    path: "{{ apache_path_config_custom }}"
+    state: directory
+  when: apache_vhost_file_list is defined
+
+- name: Copy vhost config
+  template:
+    src: "{{ item }}"
+    dest: "{{ apache_path_config_custom }}/"
+    owner: "{{ apache_daemon_user }}"
+    group: "{{ apache_daemon_group }}"
+  with_items: apache_vhost_file_list
+  notify: restart apache
+  when: apache_vhost_file_list is defined

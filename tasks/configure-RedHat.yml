@@ -1,0 +1,14 @@
+# Applies RedHat specific config for the Apache instance
+---
+
+# Get selinux state
+- name: Get selinux state
+  command: "/usr/sbin/getenforce"
+  changed_when: false
+  always_run: yes
+  register: _selinux_state
+
+- name: Enable apache to access the network (selinux only)
+  command: "/usr/sbin/setsebool -P httpd_can_network_connect 1"
+  notify: restart apache
+  when: _selinux_state.stdout != "Disabled"

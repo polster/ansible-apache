@@ -1,0 +1,8 @@
+# Deploys the Apache instance
+---
+
+- name: Install Apache
+  yum:
+    name: "{{ item }}"
+    state: installed
+  with_items: apache_packages

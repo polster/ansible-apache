@@ -1,0 +1,10 @@
+# Apache config
+---
+
+- name: Ensure Apache modules are enabled
+  lineinfile:
+    dest: "{{ apache_path_config }}/httpd.conf"
+    regexp: "^#LoadModule {{ item }}_module modules/mod_{{ item }}.so"
+    line: "LoadModule {{ item }}_module modules/mod_{{ item }}.so"
+    backrefs: yes
+  with_items: "{{ apache_mod_list_enabled }}"

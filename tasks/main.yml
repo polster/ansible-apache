@@ -1,0 +1,22 @@
+# Deploys and configures the given Apache instance
+---
+
+- name: Include OS specific vars
+  include_vars: "{{ ansible_os_family }}.yml"
+
+- name: Define Apache packages
+  set_fact: apache_packages="{{ __apache_packages | list }}"
+  when: apache_packages is not defined
+
+- include: setup-RedHat.yml
+  when: ansible_os_family == 'RedHat'
+
+- include: configure-RedHat.yml
+  when: ansible_os_family == 'RedHat'
+
+- include: configure-httpd.yml
+- include: configure-ssl.yml
+- include: configure-vhost.yml
+
+- name: Ensure Apache is enabled on boot
+  service: name={{ apache_daemon }} enabled=yes

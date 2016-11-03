@@ -1,0 +1,8 @@
+---
+
+# The default package list
+__apache_packages:
+  - httpd
+  - httpd-devel
+  - mod_ssl
+  - openssh

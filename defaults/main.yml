@@ -1,0 +1,27 @@
+# Default varaibles, may be overridden by depending roles.
+---
+
+# The daemon name
+apache_daemon: httpd
+
+# The Apache base path
+apache_path_base: "/etc/{{ apache_daemon }}"
+
+# The Apache config dir
+apache_path_config: "{{ apache_path_base }}/conf"
+
+# The Apache custom config dir
+apache_path_config_custom: "{{ apache_path_base }}/conf.d"
+
+# The Apache SSL cert dir
+apache_path_ssl: "{{ apache_path_base }}/ssl"
+
+# Restart Apache daemon
+apache_daemon_restart: true
+
+# The daemon user and group
+apache_daemon_user: "root"
+apache_daemon_group: "root"
+
+# The list of Apache modules to be enabled
+apache_mod_list_enabled: []

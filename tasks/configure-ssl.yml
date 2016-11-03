@@ -1,0 +1,19 @@
+# Configures the Apache vhost ssl part.
+---
+
+- name: Ensure the ssl cert dir is present
+  file:
+    path: "{{ apache_ssl_path }}"
+    state: directory
+  when: apache_ssl_file_list is defined
+
+- name: Copy ssl certs
+  copy:
+    src: "{{ item }}/"
+    dest: "{{ apache_path_ssl }}/"
+    owner: "{{ apache_daemon_user }}"
+    group: "{{ apache_daemon_group }}"
+    mode: "{{ apache_path_ssl_mode }}"
+  with_items: apache_ssl_file_list
+  notify: restart apache
+  when: apache_ssl_file_list is defined
