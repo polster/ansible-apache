@@ -3,7 +3,7 @@
 
 - name: Ensure the ssl cert dir is present
   file:
-    path: "{{ apache_ssl_path }}"
+    path: "{{ apache_path_ssl }}"
     state: directory
   when: apache_ssl_file_list is defined
 
