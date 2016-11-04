@@ -14,6 +14,6 @@
     owner: "{{ apache_daemon_user }}"
     group: "{{ apache_daemon_group }}"
     mode: "{{ apache_path_ssl_mode }}"
-  with_items: apache_ssl_file_list
+  with_items: "{{ apache_ssl_file_list }}"
   notify: restart apache
   when: apache_ssl_file_list is defined

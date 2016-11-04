@@ -13,6 +13,6 @@
     dest: "{{ apache_path_config_custom }}/"
     owner: "{{ apache_daemon_user }}"
     group: "{{ apache_daemon_group }}"
-  with_items: apache_vhost_file_list
+  with_items: "{{ apache_vhost_file_list }}"
   notify: restart apache
   when: apache_vhost_file_list is defined

@@ -5,4 +5,4 @@
   yum:
     name: "{{ item }}"
     state: installed
-  with_items: apache_packages
+  with_items: "{{ apache_packages }}"
