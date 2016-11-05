@@ -11,4 +11,4 @@
 - name: Enable apache to access the network (selinux only)
   command: "/usr/sbin/setsebool -P httpd_can_network_connect 1"
   notify: restart apache
-  when: _selinux_state.stdout != "Disabled"
+  when: "'{{ _selinux_state.stdout }}' != 'Disabled'"

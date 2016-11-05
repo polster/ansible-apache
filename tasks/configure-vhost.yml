@@ -5,7 +5,7 @@
   file:
     path: "{{ apache_path_config_custom }}"
     state: directory
-  when: "{{ apache_vhost_file_list }}" is defined
+  when: apache_vhost_file_list is defined
 
 - name: Copy vhost config
   template:
@@ -15,4 +15,4 @@
     group: "{{ apache_daemon_group }}"
   with_items: "{{ apache_vhost_file_list }}"
   notify: restart apache
-  when: "{{ apache_vhost_file_list }}" is defined
+  when: apache_vhost_file_list is defined
